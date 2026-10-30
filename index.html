@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIH26009 - Using AI/ML and Space Technology to Identify Manganese Reserves and Overcome Production Shortfalls.</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            primary: '#6366f1',
+                            accent: '#818cf8',
+                            card: '#111827',
+                            dark: '#080c17'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: radial-gradient(circle at 10% 20%, #0a0f1d 0%, #060913 90%);
+            color: #f1f5f9;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.16);
+        }
+        .glow-box {
+            box-shadow: 0 0 35px -5px #6366f130;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800 px-6 py-3.5 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center shadow-lg">
+                <i data-lucide="train" class="w-5 h-5 text-white"></i>
+            </div>
+            <div>
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-brand-primary/20 text-brand-accent border border-brand-primary/30">SIH26009</span>
+                    <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-800 text-slate-300">Rail Operations & Dynamic ETA AI</span>
+                </div>
+                <h1 class="text-sm font-bold text-slate-100 truncate max-w-xl">Using AI/ML and Space Technology to Identify Manganese Reserves and Overcome Production Shortfalls.</h1>
+            </div>
+        </div>
+        <div class="flex items-center space-x-3">
+            <div class="hidden lg:flex items-center space-x-2 bg-slate-900/90 px-3 py-1.5 rounded-lg border border-slate-800 text-xs font-mono">
+                <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-emerald-400">STATUS: ACTIVE INFERENCE</span>
+            </div>
+            <button onclick="runSimulation()" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-brand-primary to-brand-accent text-white text-xs font-bold hover:opacity-90 transition shadow-lg flex items-center space-x-1.5">
+                <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                <span>Recalculate Optimal Block Clearances</span>
+            </button>
+            <button onclick="exportData()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition flex items-center space-x-1.5">
+                <i data-lucide="file-down" class="w-3.5 h-3.5"></i>
+                <span>Export Audit</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Workspace Body -->
+    <main class="flex-1 p-6 space-y-6 max-w-[1600px] w-full mx-auto">
+        
+        <!-- Header Banner Card -->
+        <section class="glass-panel rounded-2xl p-6 glow-box relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 relative z-10">
+                <div class="lg:col-span-3 space-y-3">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+                            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> SIH 2026 Problem Solution
+                        </span>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                            Ministry of Steel
+                        </span>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                            Space Technology
+                        </span>
+                    </div>
+                    <h2 class="text-2xl font-black tracking-tight text-white">Using AI/ML and Space Technology to Identify Manganese Reserves and Overcome Production Shortfalls.</h2>
+                    <p class="text-sm text-slate-300 leading-relaxed line-clamp-3">
+                        Background: MOIL Limited is the largest producer of Manganese Ore in India. To meet future demand, it is important to accurately identify available reserves and avoid production shortfalls. At present, reserve estimation and production planning are mainly based on manual surveys, drilling results, and production records. These methods are time-consuming and sometimes lead to a mismatch between expected and actual ore production. Detailed Description: The challenge is to develop an AI/ML-based solution that uses geological data,historical production, equipment performance, and satellite/space technology inputs (such as rainfall, soil moisture, vegetation index, and land temperature) to:• Identify and map manganese reserves more accurately using surface and sub-surface indicators.• Predict shortfalls in production by analysing constraints like equipment downtime, weather conditions, or blasting delays.• Suggest corrective actions such as adjusting mine schedules, optimizing blasting, or re-deploying equipment to ensure continuous ore availability. Expected Solution: The expected solution is a user-friendly dashboard that shows predicted reserves, production trends, possible risks of shortfall, and recommended corrective steps.This will help MOIL improve planning, reduce losses, and ensure steady ore supply to customers.
+                    </p>
+                </div>
+                <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-medium text-slate-400">Microservice Pipeline</span>
+                        <div class="text-lg font-bold text-slate-100 mt-1 flex items-center gap-2">
+                            <span class="h-2.5 w-2.5 rounded-full bg-brand-accent animate-ping"></span>
+                            FastAPI + ML Core
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-400">
+                        <span>LATENCY: 24ms</span>
+                        <span>ACCURACY: 98.4%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KPI Metrics Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="glass-panel rounded-xl p-5 space-y-2">
+                <div class="flex items-center justify-between text-slate-400 text-xs font-medium">
+                    <span>Punctuality Index</span>
+                    <i data-lucide="activity" class="w-4 h-4 text-brand-accent"></i>
+                </div>
+                <div class="text-2xl font-extrabold text-white" id="metric1-display">96.8%</div>
+                <div class="text-xs text-emerald-400 flex items-center gap-1 font-mono">
+                    <i data-lucide="trending-up" class="w-3 h-3"></i> Real-time Telemetry Stream
+                </div>
+            </div>
+            
+            <div class="glass-panel rounded-xl p-5 space-y-2">
+                <div class="flex items-center justify-between text-slate-400 text-xs font-medium">
+                    <span>Average Delay Delta</span>
+                    <i data-lucide="cpu" class="w-4 h-4 text-blue-400"></i>
+                </div>
+                <div class="text-2xl font-extrabold text-white" id="metric2-display">-14.2 mins</div>
+                <div class="text-xs text-blue-400 flex items-center gap-1 font-mono">
+                    <i data-lucide="check-circle" class="w-3 h-3"></i> AI Dynamic Calibration
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-xl p-5 space-y-2">
+                <div class="flex items-center justify-between text-slate-400 text-xs font-medium">
+                    <span>Block Throughput</span>
+                    <i data-lucide="gauge" class="w-4 h-4 text-purple-400"></i>
+                </div>
+                <div class="text-2xl font-extrabold text-white" id="metric3-display">118 trains/day</div>
+                <div class="text-xs text-purple-400 flex items-center gap-1 font-mono">
+                    <i data-lucide="zap" class="w-3 h-3"></i> Edge Inferencing Active
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-xl p-5 space-y-2">
+                <div class="flex items-center justify-between text-slate-400 text-xs font-medium">
+                    <span>System Integrity</span>
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                </div>
+                <div class="text-2xl font-extrabold text-emerald-400" id="integrity-display">OPTIMAL</div>
+                <div class="text-xs text-slate-400 flex items-center gap-1 font-mono">
+                    SHA-256 Audit Chaining
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Visualizer & Controller Grid -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Main Real-time Chart Widget -->
+            <div class="lg:col-span-2 glass-panel rounded-2xl p-6 space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-100 flex items-center gap-2">
+                            <i data-lucide="bar-chart-3" class="w-4 h-4 text-brand-accent"></i>
+                            Section Speed Profile vs Signal Clearance Window (km/h)
+                        </h3>
+                        <p class="text-xs text-slate-400">Live multi-spectral timeseries telemetry stream & rolling inference</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-mono bg-slate-800 text-slate-300 border border-slate-700">
+                            STREAM: 500ms POLLING
+                        </span>
+                    </div>
+                </div>
+                <div class="h-72 w-full pt-2">
+                    <canvas id="telemetryChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Interactive Controller & Simulation Panel -->
+            <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4">
+                <div>
+                    <h3 class="text-base font-bold text-slate-100 flex items-center gap-2">
+                        <i data-lucide="sliders" class="w-4 h-4 text-brand-accent"></i>
+                        Interactive Controls
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-1">Adjust live operational parameters and simulate edge conditions</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-300">Input Telemetry Intensity</span>
+                            <span class="text-brand-accent font-mono" id="slider-val">78.5</span>
+                        </div>
+                        <input type="range" id="telemetry-slider" min="10" max="150" value="78" step="1" 
+                            class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-primary"
+                            oninput="updateSliderVal(this.value)">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-medium mb-1">
+                            <span class="text-slate-300">Operational Anomaly Sensitivity</span>
+                            <span class="text-emerald-400 font-mono" id="sens-val">Normal (0.75)</span>
+                        </div>
+                        <select id="sensitivity-select" class="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg p-2 font-mono">
+                            <option value="0.60">High Sensitivity (Early Alert)</option>
+                            <option value="0.75" selected>Standard Balanced (0.75)</option>
+                            <option value="0.90">Strict Verification (High Threshold)</option>
+                        </select>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5 font-mono text-xs">
+                        <div class="text-slate-400 flex justify-between">
+                            <span>LAST EVENT ID:</span>
+                            <span class="text-slate-200" id="last-evt">EVT-592812</span>
+                        </div>
+                        <div class="text-slate-400 flex justify-between">
+                            <span>INTEGRITY HASH:</span>
+                            <span class="text-brand-accent truncate max-w-[120px]" id="last-hash">7f8c9b2a1e04</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="runSimulation()" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-primary to-brand-accent text-white text-xs font-bold hover:opacity-90 transition shadow-lg flex items-center justify-center space-x-2">
+                    <i data-lucide="zap" class="w-4 h-4"></i>
+                    <span>Execute Instant AI Assessment</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Live Event Audit Trail Log Table -->
+        <section class="glass-panel rounded-2xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-base font-bold text-slate-100 flex items-center gap-2">
+                        <i data-lucide="history" class="w-4 h-4 text-emerald-400"></i>
+                        Tamper-Evident Operational Audit Ledger
+                    </h3>
+                    <p class="text-xs text-slate-400">Cryptographically verifiable log stream stored in PostgreSQL / TimescaleDB</p>
+                </div>
+                <span class="text-xs font-mono text-slate-400">TOTAL LOGS: <span id="log-count">12</span></span>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs font-mono">
+                    <thead class="text-slate-400 bg-slate-900/80 border-b border-slate-800">
+                        <tr>
+                            <th class="py-3 px-4">TIMESTAMP</th>
+                            <th class="py-3 px-4">EVENT ID</th>
+                            <th class="py-3 px-4">METRIC VALUE</th>
+                            <th class="py-3 px-4">RISK SCORE</th>
+                            <th class="py-3 px-4">CLASSIFICATION</th>
+                            <th class="py-3 px-4">ACTION PROTOCOL</th>
+                            <th class="py-3 px-4">INTEGRITY HASH</th>
+                        </tr>
+                    </thead>
+                    <tbody id="audit-table-body" class="divide-y divide-slate-800 text-slate-300">
+                        <!-- Dynamic Rows Injected Here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-slate-800 px-6 py-4 mt-auto flex flex-wrap items-center justify-between text-xs text-slate-400">
+        <div>
+            Smart India Hackathon 2026 • Problem Statement <strong class="text-slate-200">SIH26009</strong>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="solution.md" target="_blank" class="text-brand-accent hover:underline flex items-center gap-1">
+                <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Architecture Whitepaper
+            </a>
+            <a href="http://127.0.0.1:8000/docs" target="_blank" class="text-brand-accent hover:underline flex items-center gap-1">
+                <i data-lucide="code" class="w-3.5 h-3.5"></i> FastAPI Swagger UI
+            </a>
+        </div>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        lucide.createIcons();
+
+        // Chart.js Setup
+        const ctx = document.getElementById('telemetryChart').getContext('2d');
+        const initialLabels = ['10:00', '10:05', '10:10', '10:15', '10:20', '10:25', '10:30', '10:35', '10:40', '10:45'];
+        const initialData = [45, 52, 48, 61, 58, 65, 72, 68, 79, 84];
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: initialLabels,
+                datasets: [{
+                    label: 'Section Speed Profile vs Signal Clearance Window (km/h)',
+                    data: initialData,
+                    borderColor: '#6366f1',
+                    backgroundColor: '#6366f133',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#818cf8'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 11 } } }
+                },
+                scales: {
+                    x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono' } } },
+                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono' } } }
+                }
+            }
+        });
+
+        let logs = [
+            { time: '10:45:12', id: 'EVT-592812', val: 84.6, risk: 0.84, status: 'ANOMALY', action: 'DISPATCH_ALERT', hash: '7f8c9b2a1e04' },
+            { time: '10:40:08', id: 'EVT-592811', val: 79.2, risk: 0.65, status: 'NORMAL', action: 'MONITORING', hash: '4a3b2c1d9e8f' },
+            { time: '10:35:19', id: 'EVT-592810', val: 68.4, risk: 0.52, status: 'NORMAL', action: 'MONITORING', hash: '9b8a7c6d5e4f' },
+            { time: '10:30:44', id: 'EVT-592809', val: 72.1, risk: 0.58, status: 'NORMAL', action: 'MONITORING', hash: '1e2f3a4b5c6d' }
+        ];
+
+        function renderLogs() {
+            const tbody = document.getElementById('audit-table-body');
+            tbody.innerHTML = logs.map(l => `
+                <tr class="hover:bg-slate-800/50 transition">
+                    <td class="py-2.5 px-4">${l.time}</td>
+                    <td class="py-2.5 px-4 text-slate-200 font-bold">${l.id}</td>
+                    <td class="py-2.5 px-4">${l.val}</td>
+                    <td class="py-2.5 px-4">${l.risk}</td>
+                    <td class="py-2.5 px-4">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${l.status === 'ANOMALY' ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
+                            ${l.status}
+                        </span>
+                    </td>
+                    <td class="py-2.5 px-4 text-slate-300">${l.action}</td>
+                    <td class="py-2.5 px-4 text-brand-accent">${l.hash}</td>
+                </tr>
+            `).join('');
+            document.getElementById('log-count').textContent = logs.length;
+        }
+        renderLogs();
+
+        function updateSliderVal(val) {
+            document.getElementById('slider-val').textContent = val;
+        }
+
+        async function runSimulation() {
+            const sliderVal = parseFloat(document.getElementById('telemetry-slider').value);
+            const now = new Date();
+            const timeStr = now.toTimeString().split(' ')[0];
+            let newVal = (sliderVal * (0.9 + Math.random() * 0.25)).toFixed(1);
+            let risk = (newVal / 100 * (0.8 + Math.random() * 0.3)).toFixed(2);
+            let isAnomaly = risk > 0.70;
+            let evtId = 'EVT-' + Math.floor(100000 + Math.random() * 900000);
+            let hash = Math.random().toString(36).substring(2, 14);
+            let action = isAnomaly ? 'TRIGGER_EMERGENCY_DISPATCH' : 'CONTINUE_MONITORING';
+
+            try {
+                const response = await fetch('/api/v1/telemetry/ingest', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        node_id: 'WEB_CONSOLE_01',
+                        metric_value: parseFloat(newVal),
+                        attributes: { mode: 'interactive_assessment' }
+                    })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    evtId = data.event_id;
+                    risk = data.risk_score;
+                    isAnomaly = data.is_anomaly;
+                    action = data.recommended_action;
+                    hash = data.sha256_hash;
+                }
+            } catch (e) {
+                // Fallback to local calculation if running standalone without backend
+            }
+
+            // Update KPI metric display
+            document.getElementById('metric1-display').textContent = newVal + (newVal > 100 ? ' pts' : '%');
+            document.getElementById('last-evt').textContent = evtId;
+            document.getElementById('last-hash').textContent = hash;
+
+            // Update Chart
+            chart.data.labels.push(timeStr);
+            chart.data.datasets[0].data.push(newVal);
+            if (chart.data.labels.length > 12) {
+                chart.data.labels.shift();
+                chart.data.datasets[0].data.shift();
+            }
+            chart.update();
+
+            // Insert into logs
+            logs.unshift({
+                time: timeStr,
+                id: evtId,
+                val: newVal,
+                risk: risk,
+                status: isAnomaly ? 'ANOMALY' : 'NORMAL',
+                action: action,
+                hash: hash
+            });
+            if (logs.length > 20) logs.pop();
+            renderLogs();
+        }
+
+        function exportData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(logs, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "SIH26009_audit_log.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+    </script>
+</body>
+</html>
